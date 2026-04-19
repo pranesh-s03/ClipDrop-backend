@@ -1,0 +1,4 @@
+- No rate limiting → add flask-limiter later
+- Open CORS → restrict to my frontend domain
+- File type not validated → whitelist extensions
+- Code brute-forceable → use secrets module
