@@ -617,7 +617,7 @@ function switchType(type) {
 /* ─── File handling ─── */
 function handleFileSelect(file) {
   if (!file) return;
-  if (file.size > 7 * 1024 * 1024) { toast('File too large! Max 7MB', true); return; }
+  if (file.size > 35 * 1024 * 1024) { toast('File too large! Max 35MB', true); return; }
   selectedFile = file;
   document.getElementById('dropzone').style.display = 'none';
   document.getElementById('file-preview').style.display = 'flex';
