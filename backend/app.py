@@ -3,6 +3,7 @@ from flask_cors import CORS
 import uuid, time, os, threading, base64
  
 app = Flask(__name__)
+app.config['MAX_CONTENT_LENGTH'] = 50 * 1024 * 1024  # 50MB to accommodate base64 overhead
 CORS(app)
  
 # In-memory store: { code: { type, content, filename, mime, expires } }
@@ -53,8 +54,8 @@ def push():
         if not b64:
             return jsonify({'error': 'No file content'}), 400
         # Check size (base64 is ~4/3 of original)
-        if len(b64) > 10_000_000:  # ~7.5MB original
-            return jsonify({'error': 'File too large (max 7MB)'}), 400
+        if len(b64) > 47_000_000:  # ~35MB original
+            return jsonify({'error': 'File too large (max 35MB)'}), 400
         code = gen_code()
         store[code] = {
             'type': 'file',
